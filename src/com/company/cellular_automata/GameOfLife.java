@@ -13,7 +13,7 @@ public class GameOfLife extends CellularAutomata {
     public GameOfLife(int N, double w, double h) {
         super(N, w, h);
         hideGrid();
-        seed(0.2);
+        populate(0.2);
     }
 
     @Override

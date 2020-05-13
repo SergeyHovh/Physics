@@ -7,14 +7,19 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 abstract public class CellularAutomata extends GridPanel implements ActionListener {
-    Timer timer = new Timer(100, this);
+    private int delay = 100;
+    Timer timer = new Timer(delay, this);
 
     protected CellularAutomata(int N, double w, double h) {
         super(N, w, h);
         timer.start();
     }
 
-    protected void seed(double prob) {
+    public void setDelay(int delay) {
+        this.delay = delay;
+    }
+
+    protected void populate(double prob) {
         Random r = new Random();
         for (Cell[] cells : getGrid()) {
             for (Cell cell : cells) {
