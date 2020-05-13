@@ -17,7 +17,7 @@ public class GameOfLife extends CellularAutomata {
     }
 
     @Override
-    protected void rules(int i, int j, Cell[][] grid) {
+    protected void active(int i, int j, Cell[][] grid) {
         Cell cell = grid[i][j];
         int aliveNeighbor = 0;
         Vector<Cell> neighbors = cell.getNeighbors(getGrid(), true);
@@ -35,5 +35,10 @@ public class GameOfLife extends CellularAutomata {
                 cell.setColor(alive);
             }
         }
+    }
+
+    @Override
+    protected void passive(int i, int j, Cell[][] grid) {
+
     }
 }

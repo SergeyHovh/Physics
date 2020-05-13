@@ -12,14 +12,14 @@ public class Heat extends CellularAutomata {
     public Heat(int N, double w, double h) {
         super(N, w, h);
         hideGrid();
-        setDelay(200);
-        populate(0.5);
+        setDelay(100);
+        setToroidal(false);
     }
 
     @Override
-    protected void rules(int i, int j, Cell[][] grid) {
+    protected void active(int i, int j, Cell[][] grid) {
         Cell current = grid[i][j];
-        Vector<Cell> neighbors = current.getNeighbors(getGrid(), true);
+        Vector<Cell> neighbors = current.getNeighbors(getGrid(), isToroidal());
         float r = 0f, g = 0f, b = 0f;
         for (Cell neighbor : neighbors) {
             r += neighbor.getColor().getRed();
@@ -34,18 +34,21 @@ public class Heat extends CellularAutomata {
     }
 
     @Override
+    protected void passive(int i, int j, Cell[][] grid) {
+    }
+
+    private void setSource(Cell sourceOfHeat, Color warmth) {
+        sourceOfHeat.setColor(warmth);
+        Vector<Cell> sourceNeighbors = sourceOfHeat.getNeighbors(getGrid(), isToroidal());
+        for (Cell neighbor : sourceNeighbors) {
+            neighbor.setColor(warmth);
+        }
+    }
+
+    @Override
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
         Cell clicked = getGrid()[getClickedI()][getClickedJ()];
-        clicked.setColor(Color.RED);
-        Vector<Cell> neighbors = clicked.getNeighbors(getGrid(), true);
-        for (Cell neighbor : neighbors) {
-            neighbor.setColor(Color.RED);
-            Vector<Cell> neighbors1 = neighbor.getNeighbors(getGrid(), true);
-            for (Cell cell : neighbors1) {
-                cell.setColor(Color.RED);
-            }
-        }
-
+        setSource(clicked, Color.RED);
     }
 }

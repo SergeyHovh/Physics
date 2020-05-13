@@ -9,8 +9,20 @@ import java.awt.event.MouseListener;
 
 public class GridPanel extends JPanel implements MouseListener, KeyListener {
 
-    public interface Rules {
-        void action(int i, int j, Cell[][] grid);
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D graphics2D = (Graphics2D) g;
+        for (Cell[] rectangle2DS : grid) {
+            for (Cell rectangle2D : rectangle2DS) {
+                graphics2D.setColor(rectangle2D.getColor());
+                graphics2D.fill(rectangle2D);
+                if (showGrid) {
+                    graphics2D.setColor(Color.BLACK);
+                    graphics2D.draw(rectangle2D);
+                }
+            }
+        }
     }
 
     private final int N;
@@ -35,26 +47,11 @@ public class GridPanel extends JPanel implements MouseListener, KeyListener {
         }
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D graphics2D = (Graphics2D) g;
-        for (Cell[] rectangle2DS : grid) {
-            for (Cell rectangle2D : rectangle2DS) {
-                graphics2D.setColor(rectangle2D.getColor());
-                graphics2D.fill(rectangle2D);
-                if(showGrid) {
-                    graphics2D.setColor(Color.BLACK);
-                    graphics2D.draw(rectangle2D);
-                }
-            }
-        }
-    }
-
     void updateGrid(Rules rule) {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                rule.action(i, j, gridCopy);
+                rule.passive(i, j, gridCopy);
+                rule.active(i, j, gridCopy);
             }
         }
         for (int i = 0; i < N; i++) {
@@ -62,6 +59,27 @@ public class GridPanel extends JPanel implements MouseListener, KeyListener {
                 grid[i][j].setColor(gridCopy[i][j].getColor());
             }
         }
+    }
+
+    public interface Rules {
+
+        /**
+         * describe static or passive rules of the simulation, like heat source
+         *
+         * @param i    number of the row in the grid
+         * @param j    number of the column in the grid
+         * @param grid the grid itself
+         */
+        void passive(int i, int j, Cell[][] grid);
+
+        /**
+         * describe active rules of the simulation - behaviour of each cell
+         *
+         * @param i    number of the row in the grid
+         * @param j    number of the column in the grid
+         * @param grid the grid itself
+         */
+        void active(int i, int j, Cell[][] grid);
     }
 
     public Cell[][] getGridCopy() {
@@ -78,10 +96,6 @@ public class GridPanel extends JPanel implements MouseListener, KeyListener {
 
     public Cell[][] getGrid() {
         return grid;
-    }
-
-    public int getN() {
-        return N;
     }
 
     public int getClickedI() {
