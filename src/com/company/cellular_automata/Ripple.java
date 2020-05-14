@@ -11,8 +11,8 @@ import java.util.Vector;
 import static java.lang.Math.*;
 
 public class Ripple extends CellularAutomata {
-    int time = 0;
-    Vector<V2> v2Vector = new Vector<>();
+    int time = 0, currentTime = 0;
+    Vector<V3> v3Vector = new Vector<>();
 
     public Ripple(int N, double w, double h) {
         super(N, w, h);
@@ -22,10 +22,11 @@ public class Ripple extends CellularAutomata {
     protected void active(int i, int j, Cell[][] grid) {
         Cell current = grid[i][j];
         float v = 0;
-        for (V2 v2 : v2Vector) {
-            double sq = distanceSq(current, v2);
+        for (V3 v3 : v3Vector) {
+            double sq = distanceSq(current, v3.getXy());
             double d = sqrt(sq);
-            double r = (sin(d - time)) * exp(-d / 5) * 10;
+            double localTime = time - v3.getZ();
+            double r = sin(d / 2 - localTime) * exp(-d / 2) * 10;
             v += r;
         }
         v = max(0, min(v, 1));
@@ -38,31 +39,22 @@ public class Ripple extends CellularAutomata {
     }
 
     double distanceSq(Cell current, V2 v2) {
-        int i = current.getI() - v2.i;
-        int j = current.getJ() - v2.j;
+        int i = current.getI() - v2.getX();
+        int j = current.getJ() - v2.getY();
         return i * i + j * j;
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
-        v2Vector.add(new V2(getClickedI(), getClickedJ()));
+        v3Vector.add(new V3(getClickedI(), getClickedJ(), currentTime));
+        currentTime = 0;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         time++;
-        if (time > 100) time = 0;
-    }
-
-    private static class V2 {
-        private final int i;
-        private final int j;
-
-        public V2(int i, int j) {
-            this.i = i;
-            this.j = j;
-        }
+        currentTime++;
     }
 }
