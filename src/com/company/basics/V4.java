@@ -1,5 +1,7 @@
 package com.company.basics;
 
+import java.util.Objects;
+
 public class V4 {
     private final V2 xy, yz, zw;
     private final V3 xyz;
@@ -47,5 +49,22 @@ public class V4 {
 
     public int getW() {
         return w;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        V4 v4 = (V4) o;
+        return w == v4.w &&
+                Objects.equals(xy, v4.xy) &&
+                Objects.equals(yz, v4.yz) &&
+                Objects.equals(zw, v4.zw) &&
+                Objects.equals(xyz, v4.xyz);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(xy, yz, zw, xyz, w);
     }
 }

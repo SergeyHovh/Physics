@@ -12,7 +12,6 @@ public class Heat extends CellularAutomata {
     public Heat(int N, double w, double h) {
         super(N, w, h);
         hideGrid();
-        setDelay(100);
         setToroidal(false);
     }
 

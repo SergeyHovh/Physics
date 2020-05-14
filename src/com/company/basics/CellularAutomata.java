@@ -7,17 +7,14 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 abstract public class CellularAutomata extends GridPanel implements ActionListener {
-    private int delay = 100;
     protected boolean toroidal = true;
-    Timer timer = new Timer(delay, this);
+    Timer timer;
 
     protected CellularAutomata(int N, double w, double h) {
         super(N, w, h);
+        int delay = 100;
+        timer = new Timer(delay, this);
         timer.start();
-    }
-
-    public void setDelay(int delay) {
-        this.delay = delay;
     }
 
     public boolean isToroidal() {

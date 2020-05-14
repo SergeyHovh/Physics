@@ -13,7 +13,7 @@ import java.util.Vector;
 import static java.lang.Math.*;
 
 public class Ripple extends CellularAutomata {
-    int time = 0, currentTime = 0;
+    int time = 0;
     Vector<V3> v3Vector = new Vector<>();
 
     public Ripple(int N, double w, double h) {
@@ -24,12 +24,14 @@ public class Ripple extends CellularAutomata {
     protected void active(int i, int j, Cell[][] grid) {
         Cell current = grid[i][j];
         float v = 0;
-        for (V3 v3 : v3Vector) {
+        for (int k = 0; k < v3Vector.size(); k++) {
+            V3 v3 = v3Vector.get(k);
             double sq = distanceSq(current, v3.getXy());
             double d = sqrt(sq);
             double localTime = time - v3.getZ();
-            double r = sin(d / 2 - localTime) * exp(-d / 2) * 10;
-            v += r;
+            double decay = 100 * exp(-d);
+            double r = decay * sin(d - localTime);
+            v += max(0, min(localTime - d, r));
         }
         v = max(0, min(v, 1));
         current.setColor(new Color(v, v, v));
@@ -49,14 +51,12 @@ public class Ripple extends CellularAutomata {
     @Override
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
-        v3Vector.add(new V3(getClickedI(), getClickedJ(), currentTime));
-        currentTime = 0;
+        v3Vector.add(new V3(getClickedI(), getClickedJ(), time));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         time++;
-        currentTime++;
     }
 }
