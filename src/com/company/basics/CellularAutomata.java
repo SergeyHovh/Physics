@@ -54,7 +54,22 @@ abstract public class CellularAutomata extends GridPanel implements ActionListen
         repaint();
     }
 
+
+    /**
+     * describe active rules of the simulation - behaviour of each cell
+     *
+     * @param i    number of the current row in the grid
+     * @param j    number of the current column in the grid
+     * @param grid the grid itself
+     */
     protected abstract void active(int i, int j, Cell[][] grid);
 
+    /**
+     * describe static or passive rules of the simulation, like heat source
+     *
+     * @param i    number of the current row in the grid
+     * @param j    number of the current column in the grid
+     * @param grid the grid itself
+     */
     protected abstract void passive(int i, int j, Cell[][] grid);
 }

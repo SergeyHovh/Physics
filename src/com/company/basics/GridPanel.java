@@ -62,23 +62,7 @@ public class GridPanel extends JPanel implements MouseListener, KeyListener {
     }
 
     public interface Rules {
-
-        /**
-         * describe static or passive rules of the simulation, like heat source
-         *
-         * @param i    number of the row in the grid
-         * @param j    number of the column in the grid
-         * @param grid the grid itself
-         */
         void passive(int i, int j, Cell[][] grid);
-
-        /**
-         * describe active rules of the simulation - behaviour of each cell
-         *
-         * @param i    number of the row in the grid
-         * @param j    number of the column in the grid
-         * @param grid the grid itself
-         */
         void active(int i, int j, Cell[][] grid);
     }
 
