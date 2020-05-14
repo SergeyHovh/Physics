@@ -4,6 +4,7 @@ import com.company.basics.Base;
 import com.company.basics.GridPanel;
 import com.company.cellular_automata.Ripple;
 
+
 public class Main extends GridPanel{
 
     protected Main(int N, double w, double h) {
@@ -11,7 +12,8 @@ public class Main extends GridPanel{
     }
 
     public static void main(String[] args) {
-        Base base = new Base("test", 500, 500);
-        base.addComponent(new Ripple(100, 500, 500));
+        int dim = 700;
+        Base base = new Base("test", dim, dim);
+        base.addComponent(new Ripple(100, dim, dim));
     }
 }

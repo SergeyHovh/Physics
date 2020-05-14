@@ -2,6 +2,8 @@ package com.company.cellular_automata;
 
 import com.company.basics.Cell;
 import com.company.basics.CellularAutomata;
+import com.company.basics.V2;
+import com.company.basics.V3;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
