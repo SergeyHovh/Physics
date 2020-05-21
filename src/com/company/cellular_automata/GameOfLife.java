@@ -20,7 +20,7 @@ public class GameOfLife extends CellularAutomata {
 
     public static void main(String[] args) {
         int dim = 700;
-        Base base = new Base("test", dim, dim);
+        Base base = new Base("Game Of Life", dim, dim);
         base.addComponent(new GameOfLife(100, dim, dim));
     }
 

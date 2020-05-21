@@ -15,7 +15,7 @@ import static java.lang.Math.*;
 public class Ripple extends CellularAutomata {
     public static void main(String[] args) {
         int dim = 700;
-        Base base = new Base("test", dim, dim);
+        Base base = new Base("Water Ripple Simulation", dim, dim);
         base.addComponent(new Ripple(100, dim, dim));
     }
 
