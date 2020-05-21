@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.basics.GridPanel;
 import com.company.basics.V2;
+import com.company.basics.V3;
 
 
 public class Main extends GridPanel{
@@ -11,11 +12,12 @@ public class Main extends GridPanel{
     }
 
     public static void main(String[] args) {
-//        int dim = 700;
-//        Base base = new Base("test", dim, dim);
-//        base.addComponent(new Ripple(100, dim, dim));
-        V2<Integer> v1 = new V2<>(2, 3);
-        V2<Integer> v2 = new V2<>(4, 5);
-        System.out.println(v1.div(v2));
+        V2<Integer> integerV21 = new V2<>(2, 3);
+        V2<Integer> integerV22 = new V2<>(4, 5);
+        System.out.println(integerV21.div(integerV22));
+
+        V3<Number> numberV31 = new V3<>(1, 2, 3);
+        V3<Number> numberV32 = new V3<>(2, 3, 4);
+        System.out.println(numberV31.mult(numberV32));
     }
 }

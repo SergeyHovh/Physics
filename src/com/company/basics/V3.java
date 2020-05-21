@@ -51,6 +51,15 @@ public class V3<T extends Number> implements MathematicalOperations, V {
     }
 
     @Override
+    public String toString() {
+        return "V3{" +
+                "x=" + getX() +
+                ", y=" + getY() +
+                ", z=" + getZ() +
+                '}';
+    }
+
+    @Override
     public V add(V v) {
         return new V3<Number>(
                 getX().doubleValue() + v.getX().doubleValue(),

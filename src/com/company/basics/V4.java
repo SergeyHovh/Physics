@@ -69,6 +69,16 @@ public class V4<T extends Number> implements MathematicalOperations, V {
     }
 
     @Override
+    public String toString() {
+        return "V4{" +
+                "x=" + getX() +
+                ", y=" + getY() +
+                ", z=" + getZ() +
+                ", w=" + getW() +
+                '}';
+    }
+
+    @Override
     public V add(V v) {
         return new V4<Number>(
                 getX().doubleValue() + v.getX().doubleValue(),
