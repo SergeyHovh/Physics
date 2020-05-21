@@ -2,7 +2,7 @@ package com.company.basics;
 
 import java.util.Objects;
 
-public class V4<T extends Number> {
+public class V4<T extends Number> implements MathematicalOperations, V {
     private final V2<T> xy, yz, zw;
     private final V3<T> xyz;
     private final T w;
@@ -66,5 +66,45 @@ public class V4<T extends Number> {
     @Override
     public int hashCode() {
         return Objects.hash(xy, yz, zw, xyz, w);
+    }
+
+    @Override
+    public V add(V v) {
+        return new V4<Number>(
+                getX().doubleValue() + v.getX().doubleValue(),
+                getY().doubleValue() + v.getY().doubleValue(),
+                getZ().doubleValue() + v.getZ().doubleValue(),
+                getW().doubleValue() + v.getW().doubleValue()
+        );
+    }
+
+    @Override
+    public V sub(V v) {
+        return new V4<Number>(
+                getX().doubleValue() - v.getX().doubleValue(),
+                getY().doubleValue() - v.getY().doubleValue(),
+                getZ().doubleValue() - v.getZ().doubleValue(),
+                getW().doubleValue() - v.getW().doubleValue()
+        );
+    }
+
+    @Override
+    public V mult(V v) {
+        return new V4<Number>(
+                getX().doubleValue() * v.getX().doubleValue(),
+                getY().doubleValue() * v.getY().doubleValue(),
+                getZ().doubleValue() * v.getZ().doubleValue(),
+                getW().doubleValue() * v.getW().doubleValue()
+        );
+    }
+
+    @Override
+    public V div(V v) {
+        return new V4<Number>(
+                getX().doubleValue() / v.getX().doubleValue(),
+                getY().doubleValue() / v.getY().doubleValue(),
+                getZ().doubleValue() / v.getZ().doubleValue(),
+                getW().doubleValue() / v.getW().doubleValue()
+        );
     }
 }

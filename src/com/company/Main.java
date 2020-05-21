@@ -1,8 +1,7 @@
 package com.company;
 
-import com.company.basics.Base;
 import com.company.basics.GridPanel;
-import com.company.cellular_automata.Ripple;
+import com.company.basics.V2;
 
 
 public class Main extends GridPanel{
@@ -12,8 +11,11 @@ public class Main extends GridPanel{
     }
 
     public static void main(String[] args) {
-        int dim = 700;
-        Base base = new Base("test", dim, dim);
-        base.addComponent(new Ripple(100, dim, dim));
+//        int dim = 700;
+//        Base base = new Base("test", dim, dim);
+//        base.addComponent(new Ripple(100, dim, dim));
+        V2<Integer> v1 = new V2<>(2, 3);
+        V2<Integer> v2 = new V2<>(4, 5);
+        System.out.println(v1.div(v2));
     }
 }
