@@ -2,32 +2,32 @@ package com.company.basics;
 
 import java.util.Objects;
 
-public class V3 {
-    private final V2 xy;
-    private final int z;
+public class V3<T extends Number> {
+    private final V2<T> xy;
+    private final T z;
 
-    public V3(int x, int y, int z) {
-        xy = new V2(x, y);
+    public V3(T x, T y, T z) {
+        xy = new V2<>(x, y);
         this.z = z;
     }
 
-    public V3(V2 xy, int z) {
+    public V3(V2<T> xy, T z) {
         this(xy.getX(), xy.getY(), z);
     }
 
-    public int getX() {
+    public T getX() {
         return xy.getX();
     }
 
-    public int getY() {
+    public T getY() {
         return xy.getY();
     }
 
-    public int getZ() {
+    public T getZ() {
         return z;
     }
 
-    public V2 getXy() {
+    public V2<T> getXy() {
         return xy;
     }
 
@@ -35,9 +35,9 @@ public class V3 {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        V3 v3 = (V3) o;
-        return z == v3.z &&
-                xy.equals(v3.xy);
+        V3<?> v3 = (V3<?>) o;
+        return Objects.equals(xy, v3.xy) &&
+                Objects.equals(z, v3.z);
     }
 
     @Override

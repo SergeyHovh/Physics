@@ -2,52 +2,52 @@ package com.company.basics;
 
 import java.util.Objects;
 
-public class V4 {
-    private final V2 xy, yz, zw;
-    private final V3 xyz;
-    private final int w;
+public class V4<T extends Number> {
+    private final V2<T> xy, yz, zw;
+    private final V3<T> xyz;
+    private final T w;
 
-    public V4(int x, int y, int z, int w) {
-        xy = new V2(x, y);
-        yz = new V2(y, z);
-        zw = new V2(z, w);
-        xyz = new V3(x, y, z);
+    public V4(T x, T y, T z, T w) {
+        xy = new V2<>(x, y);
+        yz = new V2<>(y, z);
+        zw = new V2<>(z, w);
+        xyz = new V3<>(x, y, z);
         this.w = w;
     }
 
-    public V4(V3 xyz, int w) {
+    public V4(V3<T> xyz, T w) {
         this(xyz.getX(), xyz.getY(), xyz.getZ(), w);
     }
 
-    public V2 getXy() {
+    public V2<T> getXy() {
         return xy;
     }
 
-    public V2 getYz() {
+    public V2<T> getYz() {
         return yz;
     }
 
-    public V2 getZw() {
+    public V2<T> getZw() {
         return zw;
     }
 
-    public V3 getXyz() {
+    public V3<T> getXyz() {
         return xyz;
     }
 
-    public int getX() {
+    public T getX() {
         return xy.getX();
     }
 
-    public int getY() {
+    public T getY() {
         return xy.getY();
     }
 
-    public int getZ() {
+    public T getZ() {
         return xyz.getZ();
     }
 
-    public int getW() {
+    public T getW() {
         return w;
     }
 
@@ -55,12 +55,12 @@ public class V4 {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        V4 v4 = (V4) o;
-        return w == v4.w &&
-                Objects.equals(xy, v4.xy) &&
+        V4<?> v4 = (V4<?>) o;
+        return Objects.equals(xy, v4.xy) &&
                 Objects.equals(yz, v4.yz) &&
                 Objects.equals(zw, v4.zw) &&
-                Objects.equals(xyz, v4.xyz);
+                Objects.equals(xyz, v4.xyz) &&
+                Objects.equals(w, v4.w);
     }
 
     @Override
