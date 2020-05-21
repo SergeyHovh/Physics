@@ -1,5 +1,6 @@
 package com.company.cellular_automata;
 
+import com.company.basics.Base;
 import com.company.basics.Cell;
 import com.company.basics.CellularAutomata;
 import com.company.basics.V3;
@@ -12,6 +13,12 @@ import java.util.Vector;
 import static java.lang.Math.*;
 
 public class Ripple extends CellularAutomata {
+    public static void main(String[] args) {
+        int dim = 700;
+        Base base = new Base("test", dim, dim);
+        base.addComponent(new Ripple(100, dim, dim));
+    }
+
     int time = 0;
     Vector<V3<Number>> v3Vector = new Vector<>();
 

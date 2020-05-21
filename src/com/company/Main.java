@@ -1,8 +1,6 @@
 package com.company;
 
-import com.company.basics.Base;
 import com.company.basics.GridPanel;
-import com.company.cellular_automata.Ripple;
 
 
 public class Main extends GridPanel{
@@ -12,8 +10,6 @@ public class Main extends GridPanel{
     }
 
     public static void main(String[] args) {
-        int dim = 700;
-        Base base = new Base("test", dim, dim);
-        base.addComponent(new Ripple(100, dim, dim));
+//        feature testing
     }
 }

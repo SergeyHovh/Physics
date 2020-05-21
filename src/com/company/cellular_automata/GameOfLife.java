@@ -1,5 +1,6 @@
 package com.company.cellular_automata;
 
+import com.company.basics.Base;
 import com.company.basics.Cell;
 import com.company.basics.CellularAutomata;
 
@@ -14,6 +15,13 @@ public class GameOfLife extends CellularAutomata {
         super(N, w, h);
         hideGrid();
         populate(0.2);
+        start(100);
+    }
+
+    public static void main(String[] args) {
+        int dim = 700;
+        Base base = new Base("test", dim, dim);
+        base.addComponent(new GameOfLife(100, dim, dim));
     }
 
     @Override

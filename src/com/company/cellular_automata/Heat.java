@@ -1,5 +1,6 @@
 package com.company.cellular_automata;
 
+import com.company.basics.Base;
 import com.company.basics.Cell;
 import com.company.basics.CellularAutomata;
 
@@ -8,6 +9,11 @@ import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 public class Heat extends CellularAutomata {
+    public static void main(String[] args) {
+        int dim = 700;
+        Base base = new Base("test", dim, dim);
+        base.addComponent(new Heat(100, dim, dim));
+    }
 
     public Heat(int N, double w, double h) {
         super(N, w, h);
