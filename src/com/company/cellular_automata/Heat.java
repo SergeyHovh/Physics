@@ -13,6 +13,7 @@ public class Heat extends CellularAutomata {
         super(N, w, h);
         hideGrid();
         setToroidal(false);
+        start(100);
     }
 
     @Override

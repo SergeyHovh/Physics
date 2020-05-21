@@ -12,9 +12,17 @@ abstract public class CellularAutomata extends GridPanel implements ActionListen
 
     protected CellularAutomata(int N, double w, double h) {
         super(N, w, h);
-        int delay = 100;
+    }
+
+    protected void start(int delay) {
         timer = new Timer(delay, this);
         timer.start();
+    }
+
+    protected double distanceSq(Cell current, V2<Integer> v2) {
+        int i = current.getI() - v2.getX();
+        int j = current.getJ() - v2.getY();
+        return i * i + j * j;
     }
 
     public boolean isToroidal() {

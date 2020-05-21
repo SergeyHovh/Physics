@@ -2,7 +2,6 @@ package com.company.cellular_automata;
 
 import com.company.basics.Cell;
 import com.company.basics.CellularAutomata;
-import com.company.basics.V2;
 import com.company.basics.V3;
 
 import java.awt.*;
@@ -18,6 +17,7 @@ public class Ripple extends CellularAutomata {
 
     public Ripple(int N, double w, double h) {
         super(N, w, h);
+        start(50);
     }
 
     @Override
@@ -39,12 +39,6 @@ public class Ripple extends CellularAutomata {
     @Override
     protected void passive(int i, int j, Cell[][] grid) {
 
-    }
-
-    double distanceSq(Cell current, V2 v2) {
-        int i = current.getI() - v2.getX();
-        int j = current.getJ() - v2.getY();
-        return i * i + j * j;
     }
 
     @Override
