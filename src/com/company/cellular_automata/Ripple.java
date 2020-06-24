@@ -24,7 +24,7 @@ public class Ripple extends CellularAutomata {
 
     public Ripple(int N, double w, double h) {
         super(N, w, h);
-        start(50);
+        start(75);
     }
 
     @Override
@@ -35,9 +35,13 @@ public class Ripple extends CellularAutomata {
             double sq = distanceSq(current, v3.getXy());
             double d = sqrt(sq);
             double localTime = time - (int) v3.getZ();
-            double decay = 100 * exp(-d / 5);
-            double r = decay * sin(d - localTime);
+            double decay = 100 * exp(-d / 3);
+            double arg = max(0, min(localTime - d, PI));
+            double r = decay * sin(arg);
             v += max(0, min(localTime - d, r));
+            if (i == j && j == 1) {
+//                System.out.println(localTime);
+            }
         }
         v = max(0, min(v, 1));
         current.setColor(new Color(v, v, v));
