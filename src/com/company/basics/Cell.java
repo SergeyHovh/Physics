@@ -2,12 +2,15 @@ package com.company.basics;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Vector;
 
 public class Cell extends Rectangle2D.Double {
     private Color color;
     private int i, j;
+    private Map<String, Object> params = new HashMap<>();
 
     public Cell(double x, double y, double w, double h) {
         super(x * w, y * h, w, h);
@@ -74,5 +77,17 @@ public class Cell extends Rectangle2D.Double {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), color, i, j);
+    }
+
+    public Map<String, Object> getParams() {
+        return params;
+    }
+
+    public void setParam(String key, Object value) {
+        params.put(key, value);
+    }
+
+    public Object getParam(String key) {
+        return params.get(key);
     }
 }
