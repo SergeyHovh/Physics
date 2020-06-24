@@ -31,16 +31,20 @@ public class Ripple extends CellularAutomata {
     protected void active(int i, int j, Cell[][] grid) {
         Cell current = grid[i][j];
         float v = 0;
-        for (V3 v3 : v3Vector) {
+        for (int k = 0; k < v3Vector.size(); k++) {
+            V3 v3 = v3Vector.get(k);
             double sq = distanceSq(current, v3.getXy());
             double d = sqrt(sq);
             double localTime = time - (int) v3.getZ();
             double decay = 100 * exp(-d / 3);
-            double arg = max(0, min(localTime - d, PI));
+            double arg = max(0, min(localTime - d, 5 * PI));
             double r = decay * sin(arg);
             v += max(0, min(localTime - d, r));
             if (i == j && j == 1) {
-//                System.out.println(localTime);
+                System.out.println("v3Vector.size() = " + v3Vector.size());
+            }
+            if (localTime > 40) {
+                v3Vector.remove(k);
             }
         }
         v = max(0, min(v, 1));
